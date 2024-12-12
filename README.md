@@ -1,5 +1,3 @@
-# Eureka
-
 This repository is a collection of information of tools and commands for linux and penetration testing.
 
 ## Table of Contents
@@ -10,6 +8,16 @@ This repository is a collection of information of tools and commands for linux a
 4. [Quote](#quote)
 
 ## Tools
+
+- [TLSX](https://github.com/projectdiscovery/tlsx)
+```bash
+go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
+```
+
+- [Nuclei](https://github.com/projectdiscovery/nuclei)
+```bash
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+```
 
 ## Commands
 
@@ -31,11 +39,6 @@ wget "https://go.dev/dl/go$goversion.linux-amd64.tar.gz"
 rm -rf /usr/local/go && tar -C /usr/local -xzf "go$goversion.linux-amd64.tar.gz"
 export PATH=$PATH:/usr/local/go/bin
 go version
-```
-
-- [TLSX](https://github.com/projectdiscovery/tlsx)
-```bash
-go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
 ```
 
 ## Quote
