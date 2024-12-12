@@ -49,6 +49,11 @@ go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 go install github.com/ffuf/ffuf/v2@latest
 ```
 
+- [WAFW00F](https://github.com/EnableSecurity/wafw00f)
+```bash
+go install github.com/ffuf/ffuf/v2@latest
+```
+
 - [Massscan](https://github.com/robertdavidgraham/masscan)
 ```bash
 sudo apt-get --assume-yes install git make gcc
@@ -84,15 +89,7 @@ go version
 - [Search Engine shodan](https://www.shodan.io/)
 - [IP Information ipinfo](https://ipinfo.io/)
 - [Redirect Checker wheregoes](https://wheregoes.com/)
-
 - [Website Headers securityheaders](https://securityheaders.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
-- [Redirect Checker wheregoes](https://wheregoes.com/)
+
 ## Quote
 > You, me, or nobody is gonna hit as hard as life. But it ain't about how hard you hit. It's about how hard you can get hit and keep moving forward; how much you can take and keep moving forward. That's how winning is done! - Rocky Balboa
