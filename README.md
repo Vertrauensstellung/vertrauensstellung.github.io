@@ -4,12 +4,12 @@ This repository is a collection of information of tools and commands for linux a
 
 1. [Tools](#tools)
 2. [Commands](#commands)
-3. [Usefull URLs](#urls)
+3. [Links](#links)
 4. [Quote](#quote)
 
 ## Tools
 
-- [TLSX](https://github.com/projectdiscovery/tlsx)
+- [TLSx](https://github.com/projectdiscovery/tlsx)
 ```bash
 go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
 ```
@@ -19,6 +19,38 @@ go install github.com/projectdiscovery/tlsx/cmd/tlsx@latest
 go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 ```
 
+- [HTTPx](https://github.com/projectdiscovery/httpx)
+```bash
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+```
+
+- [Subzy](https://github.com/PentestPad/subzy)
+```bash
+go install -v github.com/PentestPad/subzy@latest
+```
+
+- [Subzy](https://github.com/projectdiscovery/subfinder)
+```bash
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+```
+
+- [Naabu](https://github.com/projectdiscovery/naabu)
+```bash
+go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+```
+
+- [DNSx](https://github.com/projectdiscovery/dnsx)
+```bash
+go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+```
+
+- [Massscan](https://github.com/robertdavidgraham/masscan)
+```bash
+sudo apt-get --assume-yes install git make gcc
+git clone https://github.com/robertdavidgraham/masscan
+cd masscan
+make install
+```
 ## Commands
 
 - Install docker (Ubuntu)
@@ -40,6 +72,10 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf "go$goversion.linux-amd64.tar.gz"
 export PATH=$PATH:/usr/local/go/bin
 go version
 ```
+
+## Links
+
+- [CRT.sh | Certifacte Transparancy](https://crt.sh/)
 
 ## Quote
 > You, me, or nobody is gonna hit as hard as life. But it ain't about how hard you hit. It's about how hard you can get hit and keep moving forward; how much you can take and keep moving forward. That's how winning is done! - Rocky Balboa
