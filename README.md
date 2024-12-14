@@ -54,12 +54,25 @@ go install github.com/ffuf/ffuf/v2@latest
 go install github.com/ffuf/ffuf/v2@latest
 ```
 
+- [URLFinder](https://github.com/projectdiscovery/urlfinder)
+```bash
+go install -v github.com/projectdiscovery/urlfinder/cmd/urlfinder@latest
+```
+
 - [Massscan](https://github.com/robertdavidgraham/masscan)
 ```bash
 sudo apt-get --assume-yes install git make gcc
 git clone https://github.com/robertdavidgraham/masscan
 cd masscan
 make install
+```
+
+- [theHarvester](https://github.com/laramies/theHarvester/wiki/Installation)
+```bash
+git clone https://github.com/laramies/theHarvester
+cd theHarvester
+python3 -m pip install -r requirements/base.txt
+python3 theHarvester.py -h
 ```
 ## Commands
 
@@ -83,6 +96,43 @@ export PATH=$PATH:/usr/local/go/bin
 go version
 ```
 
+- Create Custom Ubuntu 22.04 Image
+```bash
+apt install p7zip wget xorisso -y
+mkdir ubuntu2204
+cd ubuntu2204
+mkdir source-files
+wget https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso
+7z -y x jammy-live-server-amd64.iso -osource-files
+mv  '[BOOT]' ../BOOT
+nano source-files/boot/grub/grub.cfg 
+menuentry "Autoinstall Ubuntu Server" {
+    set gfxpayload=keep
+    linux   /casper/vmlinuz quiet autoinstall ds=nocloud\;s=/cdrom/server/  ---
+    initrd  /casper/initrd
+}
+mkdir source-files/server
+touch source-files/server/meta-data
+touch source-files/server/user-data
+nano source-files/server/user-data
+cd source-files
+xorriso -as mkisofs -r \
+  -V 'Ubuntu 22.04 CUSTOM (EFIBIOS)' \
+  -o ../ubuntu-22.04-autoinstall.iso \
+  --grub2-mbr ../BOOT/1-Boot-NoEmul.img \
+  -partition_offset 16 \
+  --mbr-force-bootable \
+  -append_partition 2 28732ac11ff8d211ba4b00a0c93ec93b ../BOOT/2-Boot-NoEmul.img \
+  -appended_part_as_gpt \
+  -iso_mbr_part_type a2a0d0ebe5b9334487c068b6b72699c7 \
+  -c '/boot.catalog' \
+  -b '/boot/grub/i386-pc/eltorito.img' \
+    -no-emul-boot -boot-load-size 4 -boot-info-table --grub2-boot-info \
+  -eltorito-alt-boot \
+  -e '--interval:appended_partition_2:::' \
+  -no-emul-boot \
+  .
+```
 ## Links
 
 - [Certifacte Transparancy crt](https://crt.sh/)
@@ -90,6 +140,9 @@ go version
 - [IP Information ipinfo](https://ipinfo.io/)
 - [Redirect Checker wheregoes](https://wheregoes.com/)
 - [Website Headers securityheaders](https://securityheaders.com/)
+- [Google Dorking](https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06)
+- [WebCheck](https://web-check.xyz/)
+- [DNS Checker BGP](https://bgp.tools/)
 
 ## Quote
 > You, me, or nobody is gonna hit as hard as life. But it ain't about how hard you hit. It's about how hard you can get hit and keep moving forward; how much you can take and keep moving forward. That's how winning is done! - Rocky Balboa
