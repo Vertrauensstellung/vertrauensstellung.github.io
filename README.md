@@ -29,7 +29,7 @@ go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 go install -v github.com/PentestPad/subzy@latest
 ```
 
-- [Subzy](https://github.com/projectdiscovery/subfinder)
+- [Subfinder](https://github.com/projectdiscovery/subfinder)
 ```bash
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 ```
@@ -94,6 +94,23 @@ wget "https://go.dev/dl/go$goversion.linux-amd64.tar.gz"
 rm -rf /usr/local/go && tar -C /usr/local -xzf "go$goversion.linux-amd64.tar.gz"
 export PATH=$PATH:/usr/local/go/bin
 go version
+```
+
+- Install [Nginx Ubuntu](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)
+```bash
+sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+| sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+gpg --dry-run --quiet --no-keyring --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \
+http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+    | sudo tee /etc/apt/sources.list.d/nginx.list
+echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" \
+    | sudo tee /etc/apt/preferences.d/99nginx
+sudo apt update
+sudo apt install nginx
+systemctl start nginx
+systemctl enable nginx
 ```
 
 - Create Custom Ubuntu 22.04 Image
