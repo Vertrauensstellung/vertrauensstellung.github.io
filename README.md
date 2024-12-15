@@ -87,7 +87,7 @@ apt update -y
 apt install docker-ce -y
 ```
 
-- Install golang
+- Install [golang](https://go.dev/)
 ```bash
 goversion="1.23.4"
 wget "https://go.dev/dl/go$goversion.linux-amd64.tar.gz"
