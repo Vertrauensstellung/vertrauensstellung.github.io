@@ -114,6 +114,15 @@ systemctl start nginx
 systemctl enable nginx
 ```
 
+- Configure automatic updates
+```bash
+apt install unattended-upgrades
+sudo systemctl enable unattended-upgrades
+nano /etc/apt/apt.conf.d/50unattended-upgrades
+crontab -e
+0 1 * * * sudo /usr/bin/unattended-upgrade -v
+```
+
 - Create Custom Ubuntu 22.04 Image
 ```bash
 apt install p7zip wget xorisso -y
