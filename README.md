@@ -76,6 +76,10 @@ python3 -m pip install -r requirements/base.txt
 python3 theHarvester.py -h
 ```
 ## Commands
+- Kernel Logs
+```bash
+dmesg -k -w
+```
 
 - Install docker (Ubuntu)
 ```bash
@@ -170,6 +174,7 @@ xorriso -as mkisofs -r \
 - [Google Dorking](https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06)
 - [WebCheck](https://web-check.xyz/)
 - [DNS Checker BGP](https://bgp.tools/)
+- [Crunchbase](https://www.crunchbase.com/)
 
 ## Docker
 - Ubuntu Image
