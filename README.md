@@ -92,6 +92,13 @@ apt update -y
 apt install docker-ce -y
 ```
 
+- Update docker container
+```bash
+docker compose pull
+docker compose up --force-recreate --build -d
+docker image prune -f
+```
+
 - Install [golang](https://go.dev/)
 ```bash
 goversion="1.23.4"
