@@ -75,6 +75,14 @@ cd theHarvester
 python3 -m pip install -r requirements/base.txt
 python3 theHarvester.py -h
 ```
+
+- [Hashcat](https://github.com/hashcat/hashcat)
+```bash
+apt install hashcat
+hashcat -m 100 -a 0 hash.txt wordlist.txt
+```
+
+
 ## Commands
 - Kernel Logs
 ```bash
