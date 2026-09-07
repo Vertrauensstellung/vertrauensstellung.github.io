@@ -9,7 +9,8 @@
             --bg-color: #0d1117;
             --container-bg: #161b22;
             --text-color: #c9d1d9;
-            --accent-color: #ff8800; /* Changed to Orange */
+            --text-dim: #8b949e;
+            --accent-color: #ff8800;
             --border-color: #30363d;
         }
 
@@ -19,27 +20,32 @@
             padding: 0;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 2rem;
+            padding: 2rem 1.25rem;
             max-width: 900px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         h1 {
             color: var(--accent-color);
-            font-size: 2.5rem;
+            font-size: clamp(1.6rem, 6vw, 2.5rem);
             margin-bottom: 0.5rem;
+            word-break: break-word;
         }
 
         h1::before {
@@ -48,39 +54,67 @@
         }
 
         p.subtitle {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             margin-bottom: 1.5rem;
-            color: #8b949e;
+            color: var(--text-dim);
         }
 
         .profile-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
         .profile-links a {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.25rem;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
             font-weight: bold;
+            font-size: 0.95rem;
         }
 
-        .profile-links a:hover {
+        .profile-links a:hover,
+        .profile-links a:focus-visible {
             background-color: var(--accent-color);
             color: var(--bg-color);
         }
 
-        h2 {
-            margin-bottom: 1.5rem;
+        main h2 {
+            margin-bottom: 1.25rem;
             color: #fff;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
         }
 
+        /* --- Filter bar --- */
+        .toolbar {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        #search-input {
+            flex: 1 1 200px;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 4px;
+        }
+
+        #search-input:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 1px;
+        }
+
+        /* --- Command cards --- */
         .command-container {
             background-color: var(--container-bg);
             border: 1px solid var(--border-color);
@@ -89,7 +123,8 @@
             margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            gap: 1rem;
             transition: border-color 0.2s ease;
         }
 
@@ -98,38 +133,40 @@
         }
 
         .command-details {
-            flex-grow: 1;
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
         .command-desc {
-            font-size: 0.85rem;
-            color: #8b949e;
-            margin-bottom: 0.3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
         }
 
         code {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #fff;
             word-break: break-all;
-            white-space: pre-wrap; /* Enables multi-line linebreaks and spacing */
+            white-space: pre-wrap;
+            display: block;
         }
 
         .copy-btn {
+            flex: 0 0 auto;
             background-color: transparent;
             color: var(--text-color);
             border: 1px solid var(--border-color);
             padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
-            margin-left: 1rem;
             font-family: inherit;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
-            align-self: flex-start; /* Keeps the button neatly aligned at the top */
         }
 
-        .copy-btn:hover {
+        .copy-btn:hover,
+        .copy-btn:focus-visible {
             border-color: var(--text-color);
             color: #fff;
         }
@@ -140,6 +177,35 @@
             color: var(--bg-color);
             font-weight: bold;
         }
+
+        .empty-state {
+            color: var(--text-dim);
+            text-align: center;
+            padding: 2rem 1rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+        }
+
+        /* --- Small screens: stack the button under the command --- */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            .command-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+
+            .profile-links a {
+                flex: 1 1 auto;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -147,7 +213,7 @@
     <header>
         <h1>vertrauensstellung</h1>
         <p class="subtitle">Security Researcher | Bug Bounty Hunter</p>
-        
+
         <div class="profile-links">
             <a href="https://hackerone.com/vertrauensstellung" target="_blank" rel="noopener noreferrer">HackerOne</a>
             <a href="https://app.intigriti.com/researcher/profile/vertrauensstellung" target="_blank" rel="noopener noreferrer">Intigriti</a>
@@ -157,79 +223,128 @@
 
     <main>
         <h2>Useful Commands</h2>
-        <!-- The Javascript will automatically inject the commands here -->
+
+        <div class="toolbar">
+            <input type="text" id="search-input" placeholder="Filter commands..." aria-label="Filter commands">
+        </div>
+
         <div id="commands-list"></div>
+        <p class="empty-state" id="empty-state" hidden>No commands match your filter.</p>
     </main>
 
-    <script>
-        // ==========================================
-        // ADD YOUR COMMANDS HERE
-        // Format: { title: "Description", code: `your command here` }
-        // Use backticks (`) for multi-line commands.
-        // ==========================================
-        const myCommands = [
-            { 
-                title: "Install Golang", 
-                code: `goversion="1.27.1"
+    <!-- ==========================================================
+         ADD YOUR COMMANDS HERE.
+
+         This is a plain-text block, NOT JavaScript - so you can
+         paste commands exactly as you'd type them in a terminal.
+         No escaping quotes, backslashes, $, or backticks needed.
+
+         Format:
+           ## Title of the command
+           the command itself
+           (can span multiple lines)
+
+           ## Next command's title
+           ...
+
+         Just separate entries with a blank line before the next
+         "## " heading. The only thing you must never type inside
+         here is the literal text: </script>  (it would end this
+         block early - if a command needs that exact string, split
+         it up, e.g. "<" + "/script>").
+    =========================================================== -->
+    <script type="text/plain" id="commands-data">
+## Install Golang
+goversion="1.27.1"
 wget "https://go.dev/dl/go$goversion.linux-amd64.tar.gz"
 rm -rf /usr/local/go && tar -C /usr/local -xzf "go$goversion.linux-amd64.tar.gz"
 export PATH=$PATH:/usr/local/go/bin
-go version`
-            },
-            { 
-                title: "Python HTTP Server", 
-                code: "python3 -m http.server 8000" 
-            },
-            { 
-                title: "Extract IPs from a file", 
-                code: "grep -oE '\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b' access.log" 
-            },
-            {
-                title: "Kernel Logs",
-                code: "dmesg -k -w"
-            }
-        ];
+go version
 
+## Python HTTP Server
+python3 -m http.server 8000
+
+## Extract IPs from a file
+grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' access.log
+
+## Kernel Logs
+dmesg -k -w
+    </script>
+
+    <script>
         // ==========================================
         // DO NOT EDIT BELOW THIS LINE
         // ==========================================
-        
-        const container = document.getElementById('commands-list');
 
-        myCommands.forEach(cmd => {
-            // Create the container div
-            const div = document.createElement('div');
-            div.className = 'command-container';
+        function parseCommands(rawText) {
+            const trimmed = rawText.trim();
+            if (!trimmed) return [];
 
-            // Build the HTML structure inside
-            div.innerHTML = `
-                <div class="command-details">
-                    <div class="command-desc">${cmd.title}</div>
-                    <code></code>
-                </div>
-                <button class="copy-btn">Copy</button>
-            `;
+            // Split right before each "## " heading line
+            const blocks = trimmed.split(/\n(?=##\s)/);
 
-            // Insert the code text securely (this automatically handles < and > symbols)
-            div.querySelector('code').textContent = cmd.code;
+            return blocks.map(block => {
+                const lines = block.split('\n');
+                const title = lines[0].replace(/^##\s*/, '').trim();
+                const code = lines.slice(1).join('\n').trim();
+                return { title, code };
+            }).filter(cmd => cmd.title && cmd.code);
+        }
 
-            // Handle the copy button click
-            const btn = div.querySelector('.copy-btn');
-            btn.addEventListener('click', () => {
-                navigator.clipboard.writeText(cmd.code).then(() => {
-                    const originalText = btn.innerText;
-                    btn.innerText = 'Copied!';
-                    btn.classList.add('copied');
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.classList.remove('copied');
-                    }, 2000);
+        const rawData = document.getElementById('commands-data').textContent;
+        const myCommands = parseCommands(rawData);
+
+        const listEl = document.getElementById('commands-list');
+        const emptyStateEl = document.getElementById('empty-state');
+        const searchInput = document.getElementById('search-input');
+
+        function render() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            const filtered = !query ? myCommands : myCommands.filter(cmd =>
+                cmd.title.toLowerCase().includes(query) ||
+                cmd.code.toLowerCase().includes(query)
+            );
+
+            listEl.innerHTML = '';
+            emptyStateEl.hidden = filtered.length !== 0;
+
+            filtered.forEach(cmd => {
+                const div = document.createElement('div');
+                div.className = 'command-container';
+
+                div.innerHTML = `
+                    <div class="command-details">
+                        <div class="command-desc"></div>
+                        <code></code>
+                    </div>
+                    <button class="copy-btn" type="button">Copy</button>
+                `;
+
+                // Insert text via textContent (safe against HTML injection)
+                div.querySelector('.command-desc').textContent = cmd.title;
+                div.querySelector('code').textContent = cmd.code;
+
+                const btn = div.querySelector('.copy-btn');
+                btn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(cmd.code).then(() => {
+                        const originalText = btn.textContent;
+                        btn.textContent = 'Copied!';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    });
                 });
-            });
 
-            // Add the whole block to the page
-            container.appendChild(div);
-        });
+                listEl.appendChild(div);
+            });
+        }
+
+        searchInput.addEventListener('input', render);
+
+        render();
     </script>
 </body>
 </html>
