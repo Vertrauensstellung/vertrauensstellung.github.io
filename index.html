@@ -258,6 +258,21 @@
 ## Show image
 feh file.png
 
+### Response Header only
+curl -sD - -o /dev/null https://example.com
+
+## Grep Public JS for URLs
+grep -Eo 'https?://[^"'\'' <>]+' *.js | sort -u
+
+## Grep Public JS for API Paths
+grep -Eo '/api/[A-Za-z0-9_./?&=%:-]+' *.js | sort -u
+
+### Find Files
+find /path -type f -name '*.conf' 2>/dev/null
+
+## Screenshot
+httpx -l file.txt -ss
+
 ## Install Golang
 goversion="1.27.1"
 wget "https://go.dev/dl/go$goversion.linux-amd64.tar.gz"
@@ -274,8 +289,8 @@ grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' access.log
 ## Kernel Logs
 dmesg -k -w
 
-## Screenshot
-httpx -l file.txt -ss
+## Find SUID Files
+find / -perm -4000 -type f 2>/dev/null
     </script>
 
     <script>
