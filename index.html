@@ -258,11 +258,19 @@
 ## Show image
 feh file.png
 
-### Response Header only
+## Response Header only
 curl -sD - -o /dev/null https://example.com
 
 ## Grep Public JS for URLs
 grep -Eo 'https?://[^"'\'' <>]+' *.js | sort -u
+
+## Get MSFT Token
+curl -s -X POST "https://login.microsoftonline.com/TENANT/oauth2/v2.0/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "client_id=" \
+  --data-urlencode "client_secret=" \
+  --data-urlencode "scope=https://graph.microsoft.com/.default" \
+  --data-urlencode "grant_type=client_credentials"
 
 ## Grep Public JS for API Paths
 grep -Eo '/api/[A-Za-z0-9_./?&=%:-]+' *.js | sort -u
@@ -272,6 +280,9 @@ find /path -type f -name '*.conf' 2>/dev/null
 
 ## Screenshot
 httpx -l file.txt -ss
+
+## CheatSheet OWASP
+https://github.com/OWASP/CheatSheetSeries
 
 ## Install Golang
 goversion="1.27.1"
