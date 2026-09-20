@@ -267,6 +267,12 @@ grep -Eo 'https?://[^"'\'' <>]+' *.js | sort -u
 ## Remove lines in file
 sed -i '/example.com/d' file.txt
 
+## Check swagger
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python3 autoswagger.py $(cat subs.txt)
+
 ## Get MSFT Token
 curl -s -X POST "https://login.microsoftonline.com/TENANT/oauth2/v2.0/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
