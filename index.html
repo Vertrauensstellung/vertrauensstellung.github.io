@@ -288,7 +288,8 @@ grep -Eo '/api/[A-Za-z0-9_./?&=%:-]+' *.js | sort -u
 find /path -type f -name '*.conf' 2>/dev/null
 
 ## Screenshot
-httpx -l file.txt -ss
+/roo/go/bin/httpx -ss -l file.txt
+/root/go/bin/gowitness scan file -f file.txt
 
 ## CheatSheet OWASP
 https://github.com/OWASP/CheatSheetSeries
